@@ -1,0 +1,314 @@
+* {
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+.datagrid-tins {
+    display: inline-block;
+    width: 100%;
+    /*border: 1px solid #DDDDDD;*/
+}
+
+/* CABECALHO */
+.datagrid-tins .datagrid-tins-cabecalho {
+    background-color: #efefef;
+    display: block;
+    width: 100%;
+    min-height: 34px;
+    padding: 0.5em;
+    border-top: 2px solid #dddddd;
+    border-right: 2px solid #dddddd;
+    border-left: 2px solid #dddddd;
+    border-bottom: 1px solid #dddddd;
+    /*min-height: 50px;*/
+}
+
+.datagrid-tins .datagrid-tins-cabecalho [class*=btn-] {
+    background-image: none;
+}
+
+.datagrid-tins .datagrid-tins-cabecalho .cabecalho-contador {
+    display: inline-block;
+    line-height: 34px;
+}
+.datagrid-tins .datagrid-tins-cabecalho .cabecalho-conteudo > div ~ div{
+    margin-left: 0.5em;
+}
+
+.datagrid-tins .datagrid-tins-cabecalho .cabecalho-conteudo .btn-group ~ .btn-group{
+    margin-left: 0.2em;
+}
+
+.datagrid-tins .datagrid-tins-cabecalho .cabecalho-conteudo .glyphicon,
+.datagrid-tins .datagrid-tins-cabecalho .cabecalho-conteudo .caret {
+    margin-left: 0.2em;
+    margin-right: 0.2em;
+}
+
+/* quando clicado no botao collapse */
+.datagrid-tins .datagrid-tins-cabecalho .cabecalho-conteudo > .cabecalho-hide {
+    border-top: 1px solid #cccccc;
+    margin-top: 0.5em;
+    padding-top: 0.5em;
+    display: block;
+}
+
+.datagrid-tins .datagrid-tins-cabecalho .cabecalho-conteudo > .cabecalho-hide ~ div {
+    margin-top: 0.5em;
+    display: block;
+}
+
+/* quando NAO clicar no botao collapse */
+.datagrid-tins .datagrid-tins-cabecalho .cabecalho-conteudo > .collapse {
+    display: inline-block;
+}
+
+/* nao exibir quando estiver com collapse */
+.datagrid-tins .datagrid-tins-cabecalho .cabecalho-conteudo > .cabecalho-hide.collapse,
+.datagrid-tins .datagrid-tins-cabecalho .cabecalho-conteudo > .cabecalho-hide.collapse ~ div{
+    display: none;
+}
+
+.datagrid-tins .datagrid-tins-cabecalho .cabecalho-conteudo .form-group{
+    max-width: 20em;
+}
+
+/* CABECALHO BOTAO*/
+.datagrid-tins .datagrid-tins-cabecalho .cabecalho-botao {
+    display: block;
+}
+.datagrid-tins .datagrid-tins-cabecalho .cabecalho-botao .cabecalho-botao-mais:hover {
+    border-color: black;
+    background-color: rgba(0,0,0,0.5);
+}
+.datagrid-tins .datagrid-tins-cabecalho .cabecalho-botao .cabecalho-botao-mais {
+    padding: 9px 10px;
+    position: relative;
+    display: block;
+    right: 10px;
+    left: auto;
+    top: 10px;
+    float: right;
+    background: transparent;
+    border: 1px solid #aaaaaa;
+}
+
+/* icone do botao mais */
+.datagrid-tins .datagrid-tins-cabecalho .cabecalho-botao .cabecalho-botao-mais .icon-bar {
+    background-color: #FFFFFF;
+    border-radius: 1px;
+    display: block;
+    height: 2px;
+    width: 22px;
+}
+.datagrid-tins .datagrid-tins-cabecalho .cabecalho-botao .cabecalho-botao-mais .icon-bar + .icon-bar {
+    margin-top: 4px;
+}
+/* se datagrid-tins contiver LARGA, oculta o botao mais */
+.datagrid-tins.datagrid-tins-larga .datagrid-tins-cabecalho .cabecalho-botao {
+    display: none;
+}
+
+
+/* CONTEUDO */
+
+.datagrid-tins .datagrid-tins-conteudo {
+    padding: .5em;
+    border: 2px solid #DDDDDD;
+    display: inline-block;
+    width: 100%;
+}
+
+/* CONTEUDO VAZIO */
+.datagrid-tins .datagrid-tins-conteudo .conteudo-vazio{
+    padding: 20px;
+    font-size: 18px;
+    text-align: center;
+    border: 2px solid;
+
+}
+.datagrid-tins .datagrid-tins-conteudo .conteudo-vazio.conteudo-vazio-info{
+    background-color: #F4F8FA;
+    border-color: #BCE8F1;
+    color: #34789A;
+}
+.datagrid-tins .datagrid-tins-conteudo .conteudo-vazio.conteudo-vazio-info:hover{
+    border-color: #428bca;
+}
+
+.datagrid-tins .datagrid-tins-conteudo .conteudo-vazio.conteudo-vazio-error{
+    background-color: #FDF7F7;
+    border-color: #EED3D7;
+    color: #B94A48;
+}
+.datagrid-tins .datagrid-tins-conteudo .conteudo-vazio.conteudo-vazio-error:hover{
+    border-color: #d65250;
+}
+
+.datagrid-tins .datagrid-tins-conteudo .conteudo-vazio.conteudo-vazio-carregando{
+    background-color: #DDDDDD;
+    border-color: #FFFFFF;
+    color: #6a6a6a;
+    box-shadow: 2px 2px 3px #555555;
+    border-width: 3px;
+    text-shadow: 1px 1px 1px #ffffff;
+    display: block;
+}
+.datagrid-tins .datagrid-tins-conteudo .conteudo-vazio.conteudo-vazio-carregando:hover{
+    font-weight: bold;
+}
+.datagrid-tins .datagrid-tins-conteudo .conteudo-vazio.conteudo-vazio-carregando > div {
+    display: inline-block;
+    vertical-align: middle;
+}
+.datagrid-tins .datagrid-tins-conteudo .conteudo-vazio.conteudo-vazio-carregando .conteudo-vazio-carregando-icone {
+    background: url("spinner.gif") no-repeat center;
+    content: url("spinner.gif");
+    width: 42px;
+    height: 42px;
+    margin-right: 10px;
+}
+
+
+/* CONTEUDO GRIDS */
+.datagrid-tins .datagrid-tins-conteudo .linha:hover,
+.datagrid-tins .datagrid-tins-conteudo .linha:active{
+    border-color: #428bca;
+    background-color: #ffffff;
+}
+.datagrid-tins .datagrid-tins-conteudo .linha {
+    display: inline-block;
+    width: 100%;
+    float: left;
+    text-align: left;
+    margin-bottom : .5em;
+    background-color: #FFFFFF;
+    border: 2px solid #DDDDDD;
+    /*border-radius: 4px;*/
+    line-height: 1.42857;
+
+    transition-delay: 0s;
+    transition-duration: 0.2s;
+    transition-property: all;
+    transition-timing-function: ease-in-out;
+}
+
+.datagrid-tins .datagrid-tins-conteudo .linha .coluna {
+    list-style : none;
+    margin: 0;
+    padding: 0;
+}
+
+.datagrid-tins .datagrid-tins-conteudo .linha .coluna li:before {
+    content: attr(data-coluna-nome);
+    font-weight: bold;
+    position: absolute;
+    white-space: nowrap;
+    left: 0.5em;
+    color: #888;
+}
+
+.datagrid-tins .datagrid-tins-conteudo .linha .coluna:hover li:before {
+    color: #000000;
+}
+
+.datagrid-tins .datagrid-tins-conteudo .linha .coluna li:hover{
+    background-color: #f0f4ff;
+}
+
+.datagrid-tins .datagrid-tins-conteudo .linha .coluna li:last-child{
+    border-bottom-width: 0;
+}
+
+/* quando o cursor estiver na linha, tambem escurecer as bordas das LI */
+.datagrid-tins .datagrid-tins-conteudo .linha:hover .coluna li,
+.datagrid-tins .datagrid-tins-conteudo .linha:active .coluna li{
+    border-color: transparent;
+}
+
+.datagrid-tins .datagrid-tins-conteudo .linha .coluna li{
+    padding-left: 6em; /* regular conforme tipo de tela*/
+    position: relative;
+    cursor: default;
+    padding-right: .5em;
+    line-height: 2;
+    border-bottom: 1px solid #f0f0f0;
+
+    transition-delay: 0s;
+    transition-duration: 0.1s;
+    transition-property: all;
+    transition-timing-function: ease-in-out;
+}
+
+/* colocar de 4 em 4 */
+/* variar width */
+
+.datagrid-tins.datagrid-tins-larga .datagrid-tins-conteudo .linha:nth-child( 4n + 1) {
+    margin-left: 0;
+}
+.datagrid-tins.datagrid-tins-larga .datagrid-tins-conteudo .linha {
+    margin-left: .5em;
+    width: 24.54%;
+    max-width: 24.54%;
+}
+.datagrid-tins.datagrid-tins-larga .datagrid-tins-conteudo .linha:nth-child(4n + 1) {
+    clear: left;
+}
+.datagrid-tins.datagrid-tins-larga .datagrid-tins-conteudo .linha .coluna li{
+    padding-left: 50%;
+}
+
+/* colocar de 3 em 3 */
+/* variar width */
+.datagrid-tins.datagrid-tins-grande .datagrid-tins-conteudo .linha:nth-child( 3n + 1) {
+    margin-left: 0;
+}
+.datagrid-tins.datagrid-tins-grande .datagrid-tins-conteudo .linha {
+    margin-left: .5em;
+    width: 32.8%;
+}
+
+.datagrid-tins.datagrid-tins-grande .datagrid-tins-conteudo .linha:nth-child(3n + 1) {
+    clear: left;
+}
+.datagrid-tins.datagrid-tins-grande .datagrid-tins-conteudo .linha .coluna li{
+    padding-left: 45%;
+}
+
+/* colocar de 2 em 2 */
+/* variar width */
+
+.datagrid-tins.datagrid-tins-media .datagrid-tins-conteudo .linha:nth-child( 2n + 1) {
+    margin-left: 0;
+}
+.datagrid-tins.datagrid-tins-media .datagrid-tins-conteudo .linha {
+    margin-left: .5em;
+    width: 49%;
+}
+.datagrid-tins.datagrid-tins-media .datagrid-tins-conteudo .linha:nth-child(2n + 1) {
+    clear: left;
+}
+.datagrid-tins.datagrid-tins-media .datagrid-tins-conteudo .linha .coluna li{
+    padding-left: 35%;
+}
+
+/* colocar de 1 em 1 */
+.datagrid-tins.datagrid-tins-pequena .datagrid-tins-conteudo .linha:nth-child(n) {
+    margin-left: 0;
+}
+.datagrid-tins.datagrid-tins-pequena .datagrid-tins-conteudo .linha {
+    margin-left: .5em;
+    width: 100%;
+    clear: left;
+}
+.datagrid-tins.datagrid-tins-pequena .datagrid-tins-conteudo .linha .coluna li{
+    padding-left: 30%;
+}
+
+/* nav customizada */
+
+.navbar-datagrid .nav > li > a:hover, .navbar-datagrid .nav > li > a:focus {
+    -moz-text-decoration-color: -moz-use-text-color;
+    -moz-text-decoration-line: none;
+    -moz-text-decoration-style: solid;
+    background-color: #428BCA;
+}
