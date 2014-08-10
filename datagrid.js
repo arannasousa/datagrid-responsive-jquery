@@ -981,7 +981,7 @@
             grupoOrdenacao: "grupoCollapseGrande",
             grupoTela: "grupoCollapseLarga",
 
-            grupoCollapsePequena : [],                                                                                  // Espacos para o usuario adicionar botoes.
+            grupoCollapsePequena : [],                                                                                  //    Espacos para o usuario adicionar botoes.
             grupoCollapseMedia : [],                                                                                    //    Necessario cada item possui a funcao RENDERIZAR
             grupoCollapseGrande : [],                                                                                   //    e que o retorno seja um objeto da DOM
             grupoCollapseLarga : [],                                                                                    //
@@ -1004,10 +1004,7 @@
             carregamentoRequisicao: "Carregando dados!",
             semDadosRequisicao: "Sem dados para serem exibidos!",
             erroRequisicao: "Um erro aconteceu ao tentar solicitar sua requisição!",
-            funcaoRenderizadora: null,                                                                                  // usado para gerar a lista de informacao
-                                                                                                                        // customizada
-                                                                                                                        // a mesma recebe ( [lista_de_dados ] )
-                                                                                                                        // e deve retornar um objeto HTML (lista, dicionario, container)
+            funcaoRenderizadora: null,                                                                                  // e deve retornar um objeto HTML (lista, dicionario, container)
 
             // funcoes
             antesCarregados: null,				                                                                        // funcao que eh executada antes de carregar dados

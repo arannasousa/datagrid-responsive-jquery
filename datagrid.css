@@ -288,7 +288,8 @@
     clear: left;
 }
 .datagrid-tins.datagrid-tins-media .datagrid-tins-conteudo .linha .coluna li{
-    padding-left: 35%;
+    padding-left: 40%;
+    word-break: break-all;
 }
 
 /* colocar de 1 em 1 */
@@ -301,7 +302,8 @@
     clear: left;
 }
 .datagrid-tins.datagrid-tins-pequena .datagrid-tins-conteudo .linha .coluna li{
-    padding-left: 30%;
+    padding-left: 40%;
+    word-break: break-all;
 }
 
 /* nav customizada */
