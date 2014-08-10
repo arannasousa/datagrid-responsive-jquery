@@ -1,4 +1,10 @@
-{"grupoNavegacao": "grupoCollapsePequena", "colunas": [
+{
+    "name":"Tatagrid-responsive-jquery",
+    "tagline":"Datagrid responsivo mobile jquery",
+    "body":"conteudo",
+    "google":"",
+    "note":"Don't delete this file! It's used internally to help with page regeneration.",
+"grupoNavegacao": "grupoCollapsePequena", "colunas": [
     ["campo1", "C\u00f3digo"],
     ["campo2", "Primeiro nome"],
     ["campo3", "Ultimo nome"],
