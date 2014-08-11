@@ -771,7 +771,7 @@
             }
 
             // $.ajaxSettings.traditional = true; // causa problema nos dicionarios
-            $.post({
+            $.post(
                 this.opcoes.url,
                 {
                     'csrfmiddlewaretoken': this.opcoes.csrfmiddlewaretoken,
@@ -811,7 +811,7 @@
                     }
                 },
                 'JSON'
-            }).fail(function(xhr){
+            ).fail(function(xhr){
                     try{
                         var retorno = $.parseJSON(xhr.responseText || "{}");
 
