@@ -772,14 +772,14 @@
 
             // $.ajaxSettings.traditional = true; // causa problema nos dicionarios
             $.post({
-                url: this.opcoes.url,
-                data: {
+                this.opcoes.url,
+                {
                     'csrfmiddlewaretoken': this.opcoes.csrfmiddlewaretoken,
                     'parametros': JSON.stringify(
                         this.opcoes
                     )
                 },
-                success: function (xhr) {
+                function (xhr) {
                     try {
                         // tenta junstar o que retornou com o as opcoes padrao
                         $.extend($eu.opcoes, xhr);
@@ -810,9 +810,7 @@
                         );
                     }
                 },
-                dataType:"json", //'JSON'
-                type:"POST",
-                contentType:"application/json; charset=utf-8"
+                'JSON'
             }).fail(function(xhr){
                     try{
                         var retorno = $.parseJSON(xhr.responseText || "{}");
