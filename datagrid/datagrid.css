@@ -63,8 +63,8 @@
 }
 
 /* nao exibir quando estiver com collapse */
-.datagrid-tins .datagrid-tins-cabecalho .cabecalho-conteudo > .cabecalho-hide.collapse,
-.datagrid-tins .datagrid-tins-cabecalho .cabecalho-conteudo > .cabecalho-hide.collapse ~ div{
+.datagrid-tins .datagrid-tins-cabecalho .cabecalho-conteudo > .cabecalho-hide.collapse:not(.in),
+.datagrid-tins .datagrid-tins-cabecalho .cabecalho-conteudo > .cabecalho-hide.collapse:not(.in) ~ div{
     display: none;
 }
 

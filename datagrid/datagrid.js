@@ -771,49 +771,47 @@
             }
 
             // $.ajaxSettings.traditional = true; // causa problema nos dicionarios
-            $.post({
-                url: this.opcoes.url,
-                data: {
-                    'csrfmiddlewaretoken': this.opcoes.csrfmiddlewaretoken,
-                    'parametros': JSON.stringify(
+            $.post(
+                this.opcoes.url,
+                {
+                'csrfmiddlewaretoken': this.opcoes.csrfmiddlewaretoken,
+                'parametros' : JSON.stringify(
                         this.opcoes
                     )
                 },
-                success: function (xhr) {
-                    try {
+                function(xhr){
+                    try{
                         // tenta junstar o que retornou com o as opcoes padrao
-                        $.extend($eu.opcoes, xhr);
+                        $.extend( $eu.opcoes, xhr);
 
-                        if (Object.keys($eu.opcoes.dados).length) {
+                        if( Object.keys($eu.opcoes.dados).length ){
                             //  gera o conteudo
-                            $eu.__renderizar();
+                           $eu.__renderizar();
                         } else {
                             $eu.conteudo
                                 .empty()
                                 .append(
-                                $eu.__semDadosRequisicao()
-                            );
+                                    $eu.__semDadosRequisicao()
+                                );
                         }
 
                         $eu.__atualizaContador();
                         $eu.__checaBotoesNavegacao();
 
-                        if (typeof $eu.opcoes.depoisCarregados === "function") {
+                        if( typeof $eu.opcoes.depoisCarregados === "function"){
                             $eu.opcoes.depoisCarregados();
                         }
 
-                    } catch (e) {
+                    } catch (e){
                         $eu.conteudo
                             .empty()
                             .append(
-                            $eu.__erroRequisicao()
-                        );
+                                $eu.__erroRequisicao()
+                            );
                     }
                 },
-                dataType:"json", //'JSON'
-                type:"POST",
-                contentType:"application/json; charset=utf-8"
-            }).fail(function(xhr){
+                'JSON'
+            ).fail(function(xhr){
                     try{
                         var retorno = $.parseJSON(xhr.responseText || "{}");
 
