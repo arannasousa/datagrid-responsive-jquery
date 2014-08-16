@@ -771,7 +771,7 @@
             }
 
             // $.ajaxSettings.traditional = true; // causa problema nos dicionarios
-            $.post(
+            $.get(
                 this.opcoes.url,
                 {
                 'csrfmiddlewaretoken': this.opcoes.csrfmiddlewaretoken,
