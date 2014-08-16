@@ -765,18 +765,24 @@
         __requisitar: function() {
 
             var $eu = this;
+            var $metodo = null;
 
             if( typeof $eu.opcoes.antesCarregados === "function"){
                 $eu.opcoes.antesCarregados();
             }
 
+            if($eu.opcoes.metodo == "GET")
+                $metodo = $.get;
+            else
+                $metodo = $.post;
+
             // $.ajaxSettings.traditional = true; // causa problema nos dicionarios
-            $.get(
-                this.opcoes.url,
+            $metodo(
+                $eu.opcoes.url,
                 {
                 'csrfmiddlewaretoken': this.opcoes.csrfmiddlewaretoken,
                 'parametros' : JSON.stringify(
-                        this.opcoes
+                        $eu.opcoes
                     )
                 },
                 function(xhr){
@@ -829,13 +835,13 @@
                     }
                 });
 
-            this.conteudo
+            $eu.conteudo
                 .empty()
                 .append(
-                    this.__carregamento()
+                    $eu.__carregamento()
                 );
 
-            return this;
+            return $eu;
         },
         __atualizaContador: function(){
 
@@ -938,7 +944,7 @@
                 var elemento = this[0];
 
                 if (elemento.datagrid_tins) {
-                    $.extend(elemento.datagrid_tins.opcoes, options);                                                  // adiciona as novas opcoes
+                    $.extend(elemento.datagrid_tins.opcoes, options);                                                   // adiciona as novas opcoes
                 } else {
                     elemento.datagrid_tins = new DatagridTins(                                                          // inicializa o objeto
                         elemento,
@@ -954,18 +960,19 @@
             }
         });
 
-        // Configuration Defaults.
+        //                                                                                                              Configuration Defaults.
         $.fn.datagrid_tins.defaults = {
             identificacao: null,                                                                                        // usado para identificar de forma unica o datagrid
 
             autoAjuste: true,		                                                                        			// usar javascript para verificar o tamanho da tela
+            metodo: 'POST',                                                                                             // 'GET' or 'POST'
 
             classesTamanhoTabela: {                                                                         		    // opcional ['larga', 'grande', 'media', 'pequena']
-                ' ': "Automático",
-                'larga': "4 colunas",
-                'grande': "3 colunas",
-                'media': "2 colunas",
-                'pequena': "1 coluna"
+                ' ':        "Automático",
+                'larga':    "4 colunas",
+                'grande':   "3 colunas",
+                'media':    "2 colunas",
+                'pequena':  "1 coluna"
             },
             tamanhoPadrao: ' ', 		                                                                                // uma das de cima
 
@@ -988,7 +995,7 @@
 
             direcao: '-', 					                                                                            // '' ou '-'
             direcaoLabel: {
-                '': 'Cresc -> Decres',	                                                                                     // Sera exibido de acordo as opcoes de 'direcao'
+                '': 'Cresc -> Decres',	                                                                                // Sera exibido de acordo as opcoes de 'direcao'
                 '-': 'Decres -> Cresc'
             },
 
@@ -1010,7 +1017,7 @@
             antesCarregados: null,				                                                                        // funcao que eh executada antes de carregar dados
             depoisCarregados: null,				                                                                        // funcao que eh executada quando carregado
 
-            csrfmiddlewaretoken: ''                                                                                    // necessario para o HTTPS do django
+            csrfmiddlewaretoken: ''                                                                                     // necessario para o HTTPS do django
         }; // $.fn.datagrid_tins.defaults
 
 
