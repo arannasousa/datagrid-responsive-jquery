@@ -41,7 +41,7 @@
         $(document).ready(function () {
             hljs.initHighlightingOnLoad();
 
-            var datagridExemplo = $("div.espaco-datagrid").datagrid_tins({
+            var datagridExemplo1 = $("div.espaco-datagrid").datagrid_tins({
                 metodo: 'GET',                          // github.io NÃO aceita 'POST'
                 autoAjuste: true,
                 grupoNavegacao: "grupoCollapsePequena",
@@ -65,9 +65,62 @@
                     ["campo7", "Ações"]
                 ]
             });
+
+            /* segundo datagrid, possui botao extra */
+            var botaoExtra = {
+                botao: {
+                    nome:   'botaoQualquer',
+                    titulo: 'Botão Extra',
+                    acao: function(){
+                        alert('teste de adição de botão')
+                    },
+                    icone:  '<i class="glyphicon glyphicon-music"></i>'
+                },
+                renderizar : function(){
+                    var b = $("<button>");
+                    b.attr({
+                        "name":     this.botao.nome,
+                        "type":     "button",
+                        "class":    "btn btn-danger"
+                    });
+                    b.append(
+                            this.botao.icone,
+                            this.botao.titulo
+                    ).click(this.botao.acao);
+
+                    return $("<div>").addClass("btn-group").append(b);
+                }
+            }
+            var datagridExemplo2 = $("div.espaco-datagrid-1").datagrid_tins({
+                metodo: 'GET',                            // github.io NÃO aceita 'POST'
+                autoAjuste: false,
+                tamanhoPadrao: "media",
+                url: "espaco-datagrid-1.json",
+                identificacao:  "espaco-datagrid-1",      // identificacao de que tabela se trata
+                limiteTamanhoLarga: 2000,
+                limiteTamanhoGrande: 1024,
+                limiteTamanhoMedia: 700,
+                limiteTamanhoPequena: 600,
+                colunas: [
+                    ["campo1", "Código"],
+                    ["campo2", "Primeiro nome"],
+                    ["campo3", "Último nome"],
+                    ["campo4", "Estado"],
+                    ["campo5", "e-Mail"],
+                    ["campo6", "Ativo?"],
+                    ["campo7", "Ações"]
+                ],
+                grupoCollapsePequena: [
+                        botaoExtra                          // podem haver mais, já que é uma lista
+                ]
+            });
         });
     </script>
-
+    <style>
+        strong {
+            font-weight: bold;
+        }
+    </style>
 </head>
 
 <body>
@@ -93,9 +146,35 @@
 
             <p>Ao longo da página, segue exemplos de funcionamento.</p>
 
+            <ol>
+                <li>
+                    <a href="#inicializacao">Inicialização</a>
+                </li>
+                <li>
+                    <a href="#demonstracao">Demonstração</a>
+                </li>
+                <li>
+                    <a href="#configuracao-botoes">Configurações dos botões</a>
+                </li>
+                <li>
+                    <a href="#personalizacao-botoes">Personalização dos botões</a>
+                </li>
+                <li>
+                    <a href="#opcoes-inicializacao">Opções de inicialização</a>
+                </li>
+                <li>
+                    <a href="#metodos-disponiveis">Métodos disponíveis</a>
+                </li>
+                <li>
+                    <a href="#formato-retorno-dados">Formato do retorno dos dados</a>
+                </li>
+            </ol>
+
             <h3>
-                <span class="octicon octicon-link"></span></a>
-                Inicialização.
+                <a name="inicializacao" class="anchor" href="#inicializacao">
+                    <span class="octicon octicon-link"></span></a>
+                    Inicialização.
+                </h3>
             </h3>
 
             <p>A inicialização começa com a chamada aos componentes na tag <code>HEAD</code> do código html.</p>
@@ -143,38 +222,351 @@
             </div>
 
             <h3>
-                <span class="octicon octicon-link"></span>
-                Demonstração:
+                <a name="demonstracao" class="anchor" href="#demonstracao"><span class="octicon octicon-link"></span>
+                    Demonstração:
+                </a>
             </h3>
 
+            <p>
             <div>
                 <!-- DATAGRID -->
-                <div class='espaco-datagrid'></div>
+                <div class='espaco-datagrid' style="/*max-height: 300px;overflow: auto*/"></div>
             </div>
+            </p>
 
 
             <p>O modelo padrão vem configurado para atender até 4 tamanhos de acordo à largura do <code>local</code>
                 onde o datagrid está. Esse tamanho define o ponto <b>máximo</b> para executar a determinada largura</p>
 
-<pre>
-    <code class="javascript">...
-        limiteTamanhoLarga: 2000,
+            <div class="highlight">
+            <pre><code class="javascript">        ...
+        limiteTamanhoLarga: 2000,       // valores em 'px' (pixel)
         limiteTamanhoGrande: 1024,
         limiteTamanhoMedia: 970,
         limiteTamanhoPequena: 750
         ...</code></pre>
-
-            <p>If you're using the GitHub for Mac, simply sync your repository and you'll see the new branch.</p>
-
-            <h3>
-                <a name="designer-templates" class="anchor" href="#designer-templates"><span
-                        class="octicon octicon-link"></span></a>Designer Templates</h3>
-
-            <div>
-                <!-- DATAGRID -->
-                <div data-widget='datagrid-1'></div>
             </div>
 
+            <h3>
+                <a name="configuracao-botoes" class="anchor" href="#configuracao-botoes"><span class="octicon octicon-link"></span>
+                Configurando a aparição dos botões por tamanho do DATAGRID:
+                </a>
+            </h3>
+
+            <p>É possível configurar os botões que devem aparecer para cada tamanho do <code>datagrid</code></p>
+
+            <p>Os botões são organizados em grupos:</p>
+
+            <p>
+                <ul>
+                    <li>
+                        <code>grupoNavegacao:</code> composto pelos botões de navegação.
+                        Esse grupo, por padrão, usa a classe <code>"grupoCollapsePequena"</code>
+                        e faz com que, só sejam escondidos quando a tela for menor que o tamanho definido em <code>limiteTamanhoPequena</code>.
+                    </li>
+                    <br/>
+                    <li>
+                        <code>grupoPesquisa:</code> composto pela caixa de entrada de pesquisa e pelo botão de pesquisa.
+                        Esse grupo, por padrão, usa a classe <code>"grupoCollapseMedia"</code> e faz com que,
+                    só sejam escondidos quando a tela for menor que o tamanho definido em <code>limiteTamanhoMedia</code>.
+                    </li>
+                    <br/>
+                    <li>
+                        <code>grupoAtualizar:</code> composto pelo botão atualização.
+                        Esse grupo, por padrão, usa a classe <code>"grupoCollapseGrande"</code> e faz com que,
+                    só sejam escondidos quando a tela for menor que o tamanho definido em <code>limiteTamanhoGrande</code>.
+                    </li>
+                    <br/>
+                    <li>
+                        <code>grupoOrdenacao:</code> composto pelo de ordenação do datagrid.
+                        Esse grupo, por padrão, usa a classe <code>"grupoCollapseGrande"</code> e faz com que,
+                    só sejam escondidos quando a tela for menor que o tamanho definido em <code>limiteTamanhoGrande</code>.
+                    </li>
+                    <br/>
+                    <li>
+                        <code>grupoTela:</code> composto pelo de configuração de exibição do datagrid (configura quantas
+                        colunas de informações devem aparecer no datagrid).
+                        Esse grupo, por padrão, usa a classe <code>"grupoCollapseLarga"</code> e faz com que,
+                    só sejam escondidos quando a tela for menor que o tamanho definido em <code>limiteTamanhoLarga</code>.
+                    </li>
+                </ul>
+            </p>
+
+            <p>
+                É possível trocar o modo de quando um grupo deve aparecer ou ficar oculto, trocando as classes
+                padrão de cada um. Exemplo, os grupos originais são:
+            </p>
+
+            <div class="highlight">
+            <pre><code class="javascript">        ...
+        grupoNavegacao: "grupoCollapsePequena",
+        grupoPesquisa:  "grupoCollapseMedia",
+        grupoAtualizar: "grupoCollapseGrande",
+        grupoOrdenacao: "grupoCollapseGrande",
+        grupoTela:      "grupoCollapseLarga",
+        ...</code></pre>
+            </div>
+
+            <p>
+                Trocando o grupo <code>grupoPesquisa</code> para esconder somente quando o tamanho do datagrid for
+                menor que <code>limiteTamanhoPequena</code>,
+                ao invés de menor do que <code>limiteTamanhoMedia</code>
+            </p>
+
+            <div class="highlight">
+            <pre><code class="javascript">        ...
+        grupoNavegacao: "grupoCollapsePequena",
+        grupoPesquisa:  "grupoCollapsePequena",     // troca
+        grupoAtualizar: "grupoCollapseGrande",
+        grupoOrdenacao: "grupoCollapseGrande",
+        grupoTela:      "grupoCollapseLarga",
+        ...</code></pre>
+            </div>
+
+            <h3>
+                <a name="personalizacao-botoes" class="anchor" href="#personalizacao-botoes">
+                    <span class="octicon octicon-link"></span>
+                    Adição de botões do usuário aos grupos:
+                </a>
+            </h3>
+
+            <p>É possível inserir um botão em qualquer um dos grupos existentes.
+                Existem 4 variáveis e cada é do tipo <code>list ('[]')</code>. Abaxo segue um exemplo.</p>
+
+            <p>1º - seu botão deve possuir o método <code>.renderizar()</code> e retornar um elemento "DOM".</p>
+
+            <div class="highlight">
+                <pre><code class="javascript">var botaoExtra = {
+    botao: {
+        nome:   'botaoQualquer',
+        titulo: 'Botão Extra',
+        acao: function(){
+            alert('teste de adição de botão')
+        },
+        icone:  '&lt;i class="glyphicon glyphicon-music"&gt;&lt;/i&gt;'
+    },
+    renderizar : function(){
+        var b = $("&lt;button&gt;");
+        b.attr({
+            "name":     this.botao.nome,
+            "type":     "button",
+            "class":    "btn btn-danger"
+        });
+        b.append(
+                this.botao.icone,
+                this.botao.titulo
+        ).click(this.botao.acao);
+
+        return $("&lt;div&gt;").addClass("btn-group").append(b);
+    }
+}</code></pre>
+            </div>
+
+            <p>2º - ao inicializar o datagrid, deve informar em qual grupo o seu botão vai ficar. No exemplo abaixo
+            nosso botão vai ficar no grupo <code>grupoCollapsePequena</code>.</p>
+
+            <div class="highlight">
+                <pre><code class="javascript">var datagridExemplo = $("div.espaco-datagrid-1").datagrid_tins({
+    autoAjuste: false,
+    tamanhoPadrao: "media",
+    url: "url",
+    identificacao:  "espaco-datagrid-1", // identificacao do datagrid
+    limiteTamanhoLarga: 2000,
+    limiteTamanhoGrande: 1024,
+    limiteTamanhoMedia: 700,
+    limiteTamanhoPequena: 600,
+    colunas: [
+        ["campo1", "Código"],
+        ["campo2", "Primeiro nome"],
+        ["campo3", "Último nome"],
+        ["campo4", "Estado"],
+        ["campo5", "e-Mail"],
+        ["campo6", "Ativo?"],
+        ["campo7", "Ações"]
+    ],
+    grupoCollapsePequena: [
+            botaoExtra          // podem haver mais, já que é uma lista
+    ]
+});</code></pre>
+            </div>
+
+            <p>
+                Resultado:
+            </p>
+
+            <p>
+            <div>
+                <!-- DATAGRID -1 -->
+                <div class='espaco-datagrid-1' style="/*max-height: 300px;overflow: auto*/"></div>
+            </div>
+            </p>
+
+            <h3>
+                <a name="opcoes-inicializacao" class="anchor" href="#opcoes-inicializacao">
+                    <span class="octicon octicon-link"></span>
+                    Opções de inicialização:
+                </a>
+            </h3>
+
+            <p>Ao chamar a função <code>datagrid_tins</code> é possível fazer algumas configurações.
+                Abaixo é exibida todas as opções e em seguida, é explanado cada item.</p>
+
+            <div class="highlight">
+                <pre><code class="javascript">.datagrid_tins({
+    identificacao: null,
+    autoAjuste: true,
+    metodo: 'POST',
+
+    classesTamanhoTabela: {
+        ' ':        "Automático",
+        'larga':    "4 colunas",
+        'grande':   "3 colunas",
+        'media':    "2 colunas",
+        'pequena':  "1 coluna"
+    },
+    tamanhoPadrao: ' ',
+
+    limiteTamanhoLarga: 2000,
+    limiteTamanhoGrande: 1024,
+    limiteTamanhoMedia: 970,
+    limiteTamanhoPequena: 750,
+
+    grupoNavegacao: "grupoCollapsePequena",
+    grupoPesquisa: "grupoCollapseMedia",
+    grupoAtualizar: "grupoCollapseGrande",
+    grupoOrdenacao: "grupoCollapseGrande",
+    grupoTela: "grupoCollapseLarga",
+
+    grupoCollapsePequena : [],
+    grupoCollapseMedia : [],
+    grupoCollapseGrande : [],
+    grupoCollapseLarga : [],
+
+    direcao: '-',
+    direcaoLabel: {
+        '': 'Cresc -> Decres',
+        '-': 'Decres -> Cresc'
+    },
+
+    totalPaginas: 1,
+    quantidadePorPagina: 30,
+    pagina: 1,
+    ordenadoPor: null,
+    colunas: null,
+    url: null,
+    buscar: "",
+    dados: {},
+
+    carregamentoRequisicao: "Carregando dados!",
+    semDadosRequisicao: "Sem dados para serem exibidos!",
+    erroRequisicao: "Um erro aconteceu ao tentar solicitar sua requisição!",
+    funcaoRenderizadora: null,
+
+    antesCarregados: null,
+    depoisCarregados: null,
+
+    csrfmiddlewaretoken: ''
+});</code></pre>
+            </div>
+
+            <a name="opcoes-identificacao"></a>
+            <p>
+                <code>
+                    identificacao
+                </code>
+                <br/>
+                Valor padrão: <strong>null</strong>.
+                <br/>
+                Recebe uma 'string' e funciona como uma <strong>ID</strong>, identificando de forma <strong>única</strong> o datagrid.
+                <br/>
+                Se não informado, ele será gerado automaticamente.
+            </p>
+
+            <a name="opcoes-autoAjuste"></a>
+            <p>
+                <code>
+                    autoAjuste
+                </code>
+                <br/>
+                Valor padrão: <strong>true</strong>.
+                <br/>
+                Recebe um valor 'boolean' (true ou false).
+                <br/>
+                Ele indica se o datagrid fará a detecção automática da sua própria largura ou não.
+                Assim os botões serão escondidos, ou não, de acordo o tamanho do lugar onde o datagrid encontra-se.
+                <p>
+                    Quando o valor for <code>false</code>, o datadrid é configurado num tamanho fixo indicado pelo campo
+                    <a href="#opcoes-tamanhoPadrao">tamanhoPadrao</a>.
+                </p>
+            </p>
+
+            <a name="opcoes-metodo"></a>
+            <p>
+                <code>
+                    metodo
+                </code>
+                <br/>
+                Valor padrão: <strong>'POST'</strong>.
+                <br/>
+                Recebe uma 'string' ('GET' ou 'POST').
+                <br/>
+                Ele indica se o datagrid fará uma requisição via <strong>GET</strong> ou <strong>POST</strong>.
+            </p>
+
+            <a name="opcoes-classesTamanho"></a>
+            <p>
+                <code>
+                    classesTamanhoTabela: {<br/>
+                        &nbsp;&nbsp;' ':        "Automático",<br/>
+                        &nbsp;&nbsp;'larga':    "4 colunas",<br/>
+                        &nbsp;&nbsp;'grande':   "3 colunas",<br/>
+                        &nbsp;&nbsp;'media':    "2 colunas",<br/>
+                        &nbsp;&nbsp;'pequena':  "1 coluna"<br/>
+                    }
+                </code>
+                <br/>
+                Valor padrão: <strong>dicionário</strong>.
+                <br/>
+                Recebe um 'dicionário' com chaves padrão já definidas.
+                <br/>
+                Nesse campo, a edição é feita nos campos à frente das chaves (' ', 'larga', 'grande', 'media', 'pequena').
+                </p>São nesses espaços que devem ser informados os textos que irão aparecer no botão de
+                <strong>configuração de exibição do datagrid - último botão</strong>
+                <p>
+                    Quando o valor for <code>false</code>, o datadrid é configurado num tamanho fixo indicado pelo campo
+                    <a href="#opcoes-tamanhoPadrao">tamanhoPadrao</a>.
+                </p>
+            </p>
+
+
+            <div class="highlight">
+                <pre><code class="javascript">
+                    </code></pre>
+            </div>
+
+            <div class="highlight">
+                <pre><code class="javascript">
+                    </code></pre>
+            </div>
+
+
+            <h3>
+                <a name="metodos-disponiveis" class="anchor" href="#metodos-disponiveis">
+                    <span class="octicon octicon-link"></span>
+                    Métodos disponíveis:
+                </a>
+            </h3>
+
+            <h3>
+                <a name="formato-retorno-dados" class="anchor" href="#formato-retorno-dados">
+                    <span class="octicon octicon-link"></span>
+                    Formato de retorno dos dados:
+                </a>
+            </h3>
+
+
+
+            <!--    sei la -->
 
             <h3>
                 <a name="support-or-contact" class="anchor" href="#support-or-contact"><span
