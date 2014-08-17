@@ -471,9 +471,11 @@
 
             <a name="opcoes-identificacao"></a>
             <p>
-                <code>
-                    identificacao
-                </code>
+                <span class="chave">
+                    <code>
+                        identificacao
+                    </code>
+                </span>
                 <br/>
                 Valor padrão: <strong>null</strong>.
                 <br/>
@@ -484,9 +486,11 @@
 
             <a name="opcoes-autoAjuste"></a>
             <p>
-                <code>
-                    autoAjuste
-                </code>
+                <span class="chave">
+                    <code>
+                        autoAjuste
+                    </code>
+                </span>
                 <br/>
                 Valor padrão: <strong>true</strong>.
                 <br/>
@@ -502,9 +506,11 @@
 
             <a name="opcoes-metodo"></a>
             <p>
-                <code>
-                    metodo
-                </code>
+                <span class="chave">
+                    <code>
+                        metodo
+                    </code>
+                </span>
                 <br/>
                 Valor padrão: <strong>'POST'</strong>.
                 <br/>
@@ -515,15 +521,17 @@
 
             <a name="opcoes-classesTamanho"></a>
             <p>
-                <code>
-                    classesTamanhoTabela: {<br/>
-                        &nbsp;&nbsp;' ':        "Automático",<br/>
-                        &nbsp;&nbsp;'larga':    "4 colunas",<br/>
-                        &nbsp;&nbsp;'grande':   "3 colunas",<br/>
-                        &nbsp;&nbsp;'media':    "2 colunas",<br/>
-                        &nbsp;&nbsp;'pequena':  "1 coluna"<br/>
-                    }
-                </code>
+                <span class="chave">
+                    <code>
+                        classesTamanhoTabela: {<br/>
+                            &nbsp;&nbsp;' ':        "Automático",<br/>
+                            &nbsp;&nbsp;'larga':    "4 colunas",<br/>
+                            &nbsp;&nbsp;'grande':   "3 colunas",<br/>
+                            &nbsp;&nbsp;'media':    "2 colunas",<br/>
+                            &nbsp;&nbsp;'pequena':  "1 coluna"<br/>
+                        }
+                    </code>
+                </span>
                 <br/>
                 Valor padrão: <strong>dicionário</strong>.
                 <br/>
@@ -532,22 +540,59 @@
                 Nesse campo, a edição é feita nos campos à frente das chaves (' ', 'larga', 'grande', 'media', 'pequena').
                 </p>São nesses espaços que devem ser informados os textos que irão aparecer no botão de
                 <strong>configuração de exibição do datagrid - último botão</strong>
-                <p>
-                    Quando o valor for <code>false</code>, o datadrid é configurado num tamanho fixo indicado pelo campo
-                    <a href="#opcoes-tamanhoPadrao">tamanhoPadrao</a>.
-                </p>
             </p>
 
 
-            <div class="highlight">
-                <pre><code class="javascript">
-                    </code></pre>
-            </div>
+            <a name="opcoes-tamanhoPadrao"></a>
+            <p>
+                <span class="chave">
+                    <code>
+                        tamanhoPadrao
+                    </code>
+                </span>
+                <br/>
+                Valor padrão: <strong>' '</strong>.
+                <br/>
+                Recebe uma 'string'.
+                <br/>
+                Quando o campo <a href="#opcoes-autoAjuste">autoAjuste</a> possui o valor <strong>false</strong>
+                esse campo é utilizado para indicar ao datagrid, qual o tamanho fixo que será utilizado.
+                <p>
+                    Ele pode ter os seguintes valores:
+                    <ul>
+                        <li>' ' (espaco em branco)</li>
+                        <li>'larga'</li>
+                        <li>'grade'</li>
+                        <li>'media'</li>
+                        <li>'pequena'</li>
+                    </ul>
+                </p>
+            </p>
 
-            <div class="highlight">
-                <pre><code class="javascript">
-                    </code></pre>
-            </div>
+            <a name="opcoes-limiteTamanho*"></a>
+            <p>
+                <span class="chave">
+                    <code>limiteTamanho[Larga, Grande, Media, Pequena]</code>
+                </span>
+                <br/>
+                Valores padrão: <strong>inteiro</strong>.
+                <br/>
+                Recebe um valor 'inteiro'.
+                <br/>
+                Para cada tamanho do <strong>limiteTamanho*</strong> é informado um número inteiro.
+                <br/>
+                Esse número refere-se a valores em <strong>px</strong> (pixel) e indica qual a
+                <strong>largura</strong> máxima do datagrid correspondente à cada
+                <a href="#opcoes-classesTamanho">classeTamanhoTabela</a>.
+                <br/>
+                <p>
+                    Esses valores são utilizados quando o datagrid é redimensionado automaticamente e
+                    quando o campo <a href="#opcoes-autoAjuste">autoAjuste</a> possui o valor <strong>true</strong>.
+                    <br/>
+                    Na <a href="#demonstracao">demonstração</a> existe uma breve explicação sobre o uso desses campos.
+                </p>
+            </p>
+
 
 
             <h3>

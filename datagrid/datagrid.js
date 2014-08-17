@@ -707,7 +707,13 @@
             // checar se o usuario setou
             if( typeof this.opcoes.funcaoRenderizadora === "function"){
                 // jah eh encaminhado o CONTAINER junto com o THIS
-                this.opcoes.funcaoRenderizadora();
+                this.conteudo.empty().append(
+                    this.opcoes.funcaoRenderizadora(
+                        this.opcoes.dados,
+                        this.opcoes.colunas
+                    )
+                );
+
 
                 return this;
             }

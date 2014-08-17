@@ -472,6 +472,16 @@ footer a:hover {
   }
 }
 
+.chave{
+    font-size:13pt;
+    /*font-family: "monospace";*/
+    background-color: #ffffff;
+    border-left: 4px solid #d43f3a;
+    padding-left: 8pt;
+}
+.chave code {
+    font-size: 13pt
+}
 /* Mobile Landscape Size to Tablet Portrait (devices and browsers) */
 @media only screen and (min-width: 480px) and (max-width: 767px) {}
 
